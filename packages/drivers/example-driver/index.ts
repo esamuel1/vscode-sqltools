@@ -1,5 +1,5 @@
 /**
- * This is an example of a fake dialect.
+ * This is an example of a fake driver.
  * You can base on this file to create a new one.
  *
  * The functions have signatures for result object, try to keep it as short as possible and stick to the result interface.
@@ -7,10 +7,10 @@
  */
 
 import {
-  ConnectionDialect,
+  ConnectionDriver,
 } from '@sqltools/core/interface';
 import * as Utils from '@sqltools/core/utils';
-import GenericDialect from '../generic';
+import AbstractDriver from '@sqltools/drivers/abstract';
 import queries from './queries';
 import { DatabaseInterface } from '@sqltools/core/plugin-api';
 
@@ -19,18 +19,18 @@ import { DatabaseInterface } from '@sqltools/core/plugin-api';
  *
  * If your driver is not pure JS, consider using deps prop instead.
  */
-import ExampleDialectLib from 'exmaple-dialect-lib';
+import ExampleDriverLib from 'exmaple-driver-lib';
 
 
-export default class ExampleDialect extends GenericDialect<ExampleDialect.Connection> implements ConnectionDialect {
+export default class ExampleDriver extends AbstractDriver<ExampleDriver.Connection> implements ConnectionDriver {
 
   /**
    * If you set this prop, the driver will be installed by the user on first run.
    * If your driver is pure JS, you can just import it and pack it together with the extension
    */
-  public static deps: typeof GenericDialect['deps'] = [{
+  public static deps: typeof AbstractDriver['deps'] = [{
     type: 'package',
-    name: 'exmaple-dialect-lib',
+    name: 'exmaple-driver-lib',
     version: '1.0.0',
   }];
 
@@ -38,7 +38,7 @@ export default class ExampleDialect extends GenericDialect<ExampleDialect.Connec
   queries = queries;
 
   private get lib() {
-    return __non_webpack_require__('exmaple-dialect-driver');
+    return __non_webpack_require__('exmaple-driver-driver');
   }
 
   public async open() {

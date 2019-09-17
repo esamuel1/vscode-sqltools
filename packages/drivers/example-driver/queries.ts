@@ -1,4 +1,4 @@
-import { DialectQueries } from '@sqltools/core/interface';
+import { DriverQueries } from '@sqltools/core/interface';
 import { TREE_SEP } from '../../constants'; // use this separator to create the tree for columns, tables and functions
 
 /**
@@ -58,4 +58,4 @@ ORDER BY
   tableName;`,
   /** Same as fetch column, but for functions/procedures. Will be used to create an object like DatabaseInterface.Function */
   fetchFunctions: `SELECT ALL my functions`,
-} as DialectQueries;
+} as DriverQueries;
