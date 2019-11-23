@@ -152,6 +152,16 @@ const availableDrivers: { [name: string]: Driver } = {
       return props;
     }
   },
+  OmniSci: {
+    port: 9042,
+    value: DatabaseDriver['OmniSci'],
+    text: 'OmniSci',
+    icon: getIconPathForDriver(DatabaseDriver['OmniSci']),
+    requiredProps: () => {
+      const props = { name: true, server: true, port: true, username: true };
+      return props;
+    }
+  },
 };
 
 export const orderedDrivers = Object.keys(availableDrivers).map(key => availableDrivers[key]).sort((a, b) => a.text.localeCompare(b.text));
